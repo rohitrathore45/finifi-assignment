@@ -3,6 +3,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 
 const documentRoutes = require("./routes/document.routes")
+const matchRoutes = require("./routes/match.routes")
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 app.use("/documents", documentRoutes);
+app.use("/match", matchRoutes)
 
 app.get("/", (req, res) => {
     res.json({

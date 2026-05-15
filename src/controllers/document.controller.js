@@ -5,6 +5,8 @@ const PurchaseOrder = require("../models/PurchaseOrder");
 const GRN = require("../models/GRN");
 const Invoice = require("../models/Invoice");
 
+const runMatchingEngine = require("../services/matching/matchEngine")
+
 const uploadDocument = async (req, res) => {
     try {
         const filePath = req.file.path;
@@ -93,6 +95,10 @@ const uploadDocument = async (req, res) => {
 
                 extractedJson: result.extractedData,
             });
+        }
+
+        if (result.extractedData.poNumber) {
+            await runMatchingEngine(result.extractedData.poNumber);
         }
 
         return res.status(201).json({
