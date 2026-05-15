@@ -34,3 +34,35 @@ const extractPO = async (documentText) => {
 };
 
 module.exports = extractPO;
+
+
+// const model = require("../../config/geminiClient");
+
+// const {
+//     poPrompt,
+// } = require("./prompts");
+
+// const extractPO = async (documentText) => {
+//     try {
+//         const prompt = poPrompt(documentText);
+
+//         const result = await model.generateContent(prompt);
+
+//         const response = await result.response;
+
+//         const text = response.text();
+
+//         const cleanedText = text
+//             .replace(/```json/g, "")
+//             .replace(/```/g, "")
+//             .trim();
+
+//         return JSON.parse(cleanedText);
+//     } catch (error) {
+//         console.log(error);
+
+//         throw new Error("PO extraction failed");
+//     }
+// };
+
+// module.exports = extractPO;

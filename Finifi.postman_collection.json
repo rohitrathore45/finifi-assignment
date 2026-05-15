@@ -1,0 +1,148 @@
+{
+  "info": {
+    "_postman_id": "d1463918-f60a-4ba8-81e3-045da12d9e6f",
+    "name": "New Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "41947458"
+  },
+  "item": [
+    {
+      "name": "PO upload",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "uuid": "e221993d-c6bd-4ff0-a142-97f6d40df2c7",
+              "src": "/C:/Users/rohit/Downloads/PO.pdf"
+            },
+            {
+              "key": "documentType",
+              "value": "po",
+              "type": "text",
+              "uuid": "90c548ca-52f1-427c-a59c-2c4fbf13d82c"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:5000/documents/upload",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "documents",
+            "upload"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GRN upload",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "uuid": "1cff476d-098d-47fa-926b-4244e3db9195",
+              "src": "/C:/Users/rohit/Downloads/GRN.pdf"
+            },
+            {
+              "key": "documentType",
+              "value": "grn",
+              "type": "text",
+              "uuid": "2b9c27a9-3da7-476f-9fa0-c878332b8abb"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:5000/documents/upload",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "documents",
+            "upload"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Invoice upload",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/documents/upload",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "documents",
+            "upload"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "match with id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/match/CI4PO05788",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "match",
+            "CI4PO05788"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "mismatches",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "summary for dashboard",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "stored parsed document by MongoDB document ID",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ]
+}

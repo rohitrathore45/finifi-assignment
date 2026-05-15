@@ -34,3 +34,34 @@ const extractInvoice = async (documentText) => {
 };
 
 module.exports = extractInvoice;
+
+// const model = require("../../config/geminiClient");
+
+// const {
+//     invoicePrompt,
+// } = require("./prompts");
+
+// const extractInvoice = async (documentText) => {
+//     try {
+//         const prompt = invoicePrompt(documentText);
+
+//         const result = await model.generateContent(prompt);
+
+//         const response = await result.response;
+
+//         const text = response.text();
+
+//         const cleanedText = text
+//         .replace(/```json/g, "")
+//         .replace(/```/g, "")
+//         .trim();
+
+//         return JSON.parse(cleanedText);
+//     } catch (error) {
+//         console.log(error);
+
+//         throw new Error("Invoice extraction failed");
+//     }
+// };
+
+// module.exports = extractInvoice;

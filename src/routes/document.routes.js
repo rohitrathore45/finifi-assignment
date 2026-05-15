@@ -8,6 +8,14 @@ const {
     uploadDocument,
 } = require("../controllers/document.controller");
 
+const {
+    getParsedDocument,
+} = require(
+    "../controllers/document.get.controller"
+);
+
+router.get("/:id", getParsedDocument);
+
 router.post(
     "/upload",
     upload.single("file"),

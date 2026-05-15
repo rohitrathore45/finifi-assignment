@@ -34,3 +34,34 @@ const extractGRN = async (documentText) => {
 };
 
 module.exports = extractGRN;
+
+// const model = require("../../config/geminiClient");
+
+// const {
+//     grnPrompt,
+// } = require("./prompts");
+
+// const extractGRN = async (documentText) => {
+//     try {
+//         const prompt = grnPrompt(documentText);
+
+//         const result = await model.generateContent(prompt);
+
+//         const response = await result.response;
+
+//         const text = response.text();
+
+//         const cleanedText = text
+//         .replace(/```json/g, "")
+//         .replace(/```/g, "")
+//         .trim();
+
+//         return JSON.parse(cleanedText);
+//     } catch (error) {
+//         console.log(error);
+
+//         throw new Error("GRN extraction failed");
+//     }
+// };
+
+// module.exports = extractGRN;

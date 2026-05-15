@@ -23,33 +23,34 @@ const runMatchingEngine = async (poNumber) => {
         const mismatches = [];
 
         for (const poItem of po.items) {
+            if (!poItem.description) continue;
             const normalizedPODescription = normalizeText(
                 poItem.description
             );
 
-        let totalGRNQuantity = 0;
+            let totalGRNQuantity = 0;
 
-        let totalInvoiceQuantity = 0;
+            let totalInvoiceQuantity = 0;
 
-        // GRN matching
-        for (const grn of grns) {
-            for (const grnItem of grn.items) {
-            const normalizedGRNDescription =
-                normalizeText(grnItem.description);
+            // GRN matching
+            for (const grn of grns) {
+                for (const grnItem of grn.items) {
+                const normalizedGRNDescription =
+                    normalizeText(grnItem.description);
 
-            if (
-                normalizedPODescription ===
-                normalizedGRNDescription
-            ) {
-                totalGRNQuantity +=
-                grnItem.receivedQuantity || 0;
+                if (
+                    normalizedPODescription ===
+                    normalizedGRNDescription
+                ) {
+                    totalGRNQuantity +=
+                    grnItem.receivedQuantity || 0;
+                }
+                }
             }
-            }
-        }
 
-        // Invoice matching
-        for (const invoice of invoices) {
-            for (const invoiceItem of invoice.items) {
+            // Invoice matching
+            for (const invoice of invoices) {
+                for (const invoiceItem of invoice.items) {
                     const normalizedInvoiceDescription =
                         normalizeText(invoiceItem.description);
 
@@ -119,6 +120,28 @@ const runMatchingEngine = async (poNumber) => {
 
                 issues,
             });
+
+            for (const invoice of invoices) {
+
+                if (
+                    invoice.invoiceDate &&
+                    po.poDate &&
+                    new Date(invoice.invoiceDate) >
+                        new Date(po.poDate)
+                ) {
+
+                    if (
+                        !mismatches.includes(
+                            "Invoice date after PO date"
+                        )
+                    ) {
+
+                        mismatches.push(
+                            "Invoice date after PO date"
+                        );
+                    }
+                }
+            }
         }
 
         // final status
@@ -126,13 +149,18 @@ const runMatchingEngine = async (poNumber) => {
 
         // if any item is partial
         const hasPartialItems = itemResults.some(
-        (item) => item.status === "partially_matched"
+            (item) => item.status === "partially_matched"
         );
 
         // if any item mismatch
         const hasMismatchItems = itemResults.some(
-        (item) => item.status === "mismatch"
+            (item) => item.status === "mismatch"
         );
+
+        const hasDateMismatch =
+            mismatches.includes(
+                "Invoice date after PO date"
+            );
 
         if (hasPartialItems) {
             finalStatus = "partially_matched";
